@@ -1,0 +1,89 @@
+{
+  "bindings": {
+		"/actions/audiotrip": {
+			"sources": [
+				{
+					"path": "/user/hand/left/input/trigger",
+					"mode": "trigger",
+					"inputs": {
+						"pull": {
+							"output": "/actions/audiotrip/in/trigger"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/right/input/trigger",
+					"mode": "trigger",
+					"inputs": {
+						"pull": {
+							"output": "/actions/audiotrip/in/trigger"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/left/input/joystick",
+					"mode": "joystick",
+					"inputs": {
+						"position": {
+							"output": "/actions/audiotrip/in/axis_2d_1"
+						},
+						"click": {
+							"output": "/actions/audiotrip/in/axis_2d_1_click"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/right/input/joystick",
+					"mode": "joystick",
+					"inputs": {
+						"position": {
+							"output": "/actions/audiotrip/in/axis_2d_1"
+						},
+						"click": {
+							"output": "/actions/audiotrip/in/axis_2d_1_click"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/left/input/grip",
+					"mode": "trigger",
+					"inputs": {
+						"pull": {
+							"output": "/actions/audiotrip/in/grip"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/right/input/grip",
+					"mode": "trigger",
+					"inputs": {
+						"pull": {
+							"output": "/actions/audiotrip/in/grip"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/left/input/y",
+					"mode": "button",
+					"inputs": {
+						"click": {
+							"output": "/actions/audiotrip/in/menu"
+						}
+					}
+				},
+				{
+					"path": "/user/hand/right/input/b",
+					"mode": "button",
+					"inputs": {
+						"click": {
+							"output": "/actions/audiotrip/in/menu"
+						}
+					}
+				}
+			]
+		}
+	},
+  "controller_type": "rift",
+  "description": "",
+  "name": "rift defaults"
+}
