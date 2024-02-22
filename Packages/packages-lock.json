@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.jorgejgnz.hptk": {
+      "version": "https://github.com/jorgejgnz/HPTK.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4e1516bc04350b79d421d0ba8ffe0fab9a8dfafc"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,
