@@ -4,12 +4,12 @@ using KinemotikVR;
 #if UNITY_EDITOR
 using UnityEditor;
 
-[CustomEditor(typeof(TrackingRigImport))]
+[CustomEditor(typeof(TrackingRig))]
 public class TrackingRigEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        var rig = (target as TrackingRigImport);
+        var rig = (target as TrackingRig);
 
         if (Application.isPlaying)
         {

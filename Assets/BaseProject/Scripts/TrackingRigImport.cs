@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 namespace KinemotikVR
 {
-    public class TrackingRigImport : MonoBehaviour
+    public class TrackingRig : MonoBehaviour
     {
         private const InputDeviceCharacteristics HMD_CHARACS = InputDeviceCharacteristics.HeadMounted;
         private const InputDeviceCharacteristics CONTROLLER_CHARACS = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Controller;
         private const InputDeviceCharacteristics TRACKER_CHARACS = InputDeviceCharacteristics.TrackedDevice;
 
-        private static TrackingRigImport _instance = null;
+        private static TrackingRig _instance = null;
 
         [SerializeField] private XRTracker hipTracker = null;
         [SerializeField] private XRTracker leftFootTracker = null;
@@ -72,7 +72,6 @@ namespace KinemotikVR
         private void RefreshDevices()
         {
             genericTrackers.Clear();
-            Debug.Log("RefreshDevices!");
 
             InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.TrackedDevice, devices);
 
