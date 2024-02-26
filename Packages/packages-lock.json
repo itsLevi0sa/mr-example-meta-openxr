@@ -8,14 +8,14 @@
       "hash": "4e1516bc04350b79d421d0ba8ffe0fab9a8dfafc"
     },
     "com.readyplayerme.core": {
-      "version": "https://github.com/readyplayerme/rpm-unity-sdk-core.git",
+      "version": "https://github.com/readyplayerme/rpm-unity-sdk-core.git#v6.0.1",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.cloud.gltfast": "6.0.1",
         "com.unity.nuget.newtonsoft-json": "3.0.2"
       },
-      "hash": "d6867dfb3c583b90b8da2bc565992352c4902407"
+      "hash": "73ec35811311913eac6ead42c2634d8232498b76"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.5",

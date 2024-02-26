@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &14825318 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7133923217904047443, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
-  m_PrefabInstance: {fileID: 891211373}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &23209133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2603142272939419651, guid: e51aaff71471c834588edb544a536b75, type: 3}
@@ -362,6 +357,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!4 &291986659 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7458394630344270819, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+  m_PrefabInstance: {fileID: 891211373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &348000086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9193699914992826383, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
@@ -775,6 +775,10 @@ PrefabInstance:
     - target: {fileID: 6983759210362812910, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_Name
       value: XRIntegration
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983759210362812910, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7121104138884852274, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_IsActive
@@ -1352,6 +1356,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295893860}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1355200622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1010618978479222750, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+  m_PrefabInstance: {fileID: 891211373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1375798393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1833257978283973834, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
@@ -1412,7 +1421,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3745204710843922126}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164046765}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfac4fa329d1f4f23814af71a247c14b, type: 3}
   m_Name: 
@@ -1449,11 +1458,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 499713545103859496, guid: 076db4b9d1c2cd74e947f29d7de17c7e, type: 3}
   m_PrefabInstance: {fileID: 184617825836223220}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1539157954 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8488515064065604807, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
-  m_PrefabInstance: {fileID: 891211373}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576011548 stripped
 GameObject:
@@ -2733,12 +2737,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3745204709632311152, guid: e51aaff71471c834588edb544a536b75, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3745204709632311152, guid: e51aaff71471c834588edb544a536b75, type: 3}
       propertyPath: solver.leftArm.target
       value: 
-      objectReference: {fileID: 14825318}
+      objectReference: {fileID: 291986659}
     - target: {fileID: 3745204709632311152, guid: e51aaff71471c834588edb544a536b75, type: 3}
       propertyPath: solver.leftLeg.target
       value: 
@@ -2746,7 +2750,7 @@ PrefabInstance:
     - target: {fileID: 3745204709632311152, guid: e51aaff71471c834588edb544a536b75, type: 3}
       propertyPath: solver.rightArm.target
       value: 
-      objectReference: {fileID: 1539157954}
+      objectReference: {fileID: 1355200622}
     - target: {fileID: 3745204709632311152, guid: e51aaff71471c834588edb544a536b75, type: 3}
       propertyPath: solver.rightLeg.target
       value: 

@@ -8,27 +8,20 @@ public class HandOffset : MonoBehaviour
     [SerializeField] GameObject hand;
     [SerializeField] GameObject controller;
     [SerializeField] GameObject controllerOffset;
-    private GameObject targetObject;
+    [SerializeField] GameObject handOffset;
+    [SerializeField] GameObject referenceOffset;
 
-    private bool isActive = false;
-
-    private void Update()
+    public void CopyHandTransform()
     {
-        if (hand.activeSelf==true)
-        {
-            targetObject = hand;
-            CopyTransform();
-        }else if (controller.activeSelf==true)
-        {
-            targetObject = controller;
-            CopyTransform();
-        }
+        referenceOffset.transform.SetParent(hand.transform);
+        referenceOffset.transform.position = handOffset.transform.position;
+        referenceOffset.transform.rotation = handOffset.transform.rotation;
     }
-    void CopyTransform()
+
+    public void CopyControllerTransform()
     {
-        // Copy the transform
-        this.transform.SetParent(targetObject.transform);
-        this.transform.position = controllerOffset.transform.position;
-        this.transform.rotation = controllerOffset.transform.rotation;
+        referenceOffset.transform.SetParent(controller.transform);
+        referenceOffset.transform.position = controllerOffset.transform.position;
+        referenceOffset.transform.rotation = controllerOffset.transform.rotation;
     }
 }
