@@ -569,6 +569,10 @@ MonoBehaviour:
   rightHand: {fileID: 7399796099085912629}
   networkPlayer: {fileID: 0}
   networkPlayerHead: {fileID: 0}
+  anchorWrist: {fileID: 0}
+  anchorTargetWrist: {fileID: 0}
+  pinkyTarget: {fileID: 0}
+  pinkySource: {fileID: 0}
   leftHandJoints:
   - {fileID: 0}
   - {fileID: 0}

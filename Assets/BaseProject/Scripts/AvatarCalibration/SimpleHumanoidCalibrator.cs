@@ -9,6 +9,7 @@ namespace KinemotikVR
 
         public Transform playerSpace;
         public Transform center;
+        public AvatarDefinition goldie;
 
         [Header("Tracked Devices")]
         public Transform head;
@@ -28,6 +29,12 @@ namespace KinemotikVR
         public Transform leftFootOffset;
         public Transform rightFootOffset;
 
+
+        [ContextMenu("Calibrate!")]
+        public void CalledCalibrate()
+        {
+            Calibrate(goldie);
+        }
         public void Calibrate(AvatarDefinition avatar)
         {
             Debug.Log("Calibrate!");

@@ -15,10 +15,29 @@ public class MapJoints : MonoBehaviour
     [SerializeField] private GameObject networkPlayer;
     [SerializeField] private Transform networkPlayerHead;
 
+    public Quaternion rotationOffset1;
+    public Quaternion rotationOffset2;
+    public Quaternion rotationOffset3;
+    public Quaternion rotationOffset4;
     [SerializeField] private Transform anchorWrist;
     [SerializeField] private Transform anchorTargetWrist;
+    [SerializeField] private Transform pinkyTarget;
+    [SerializeField] private Transform pinkySource;
     private bool recalculateAnchors = false;
     private bool recalculateParent = false;
+    private bool recalculatePinky = false;
+
+    public Vector3 pinkyAnchorLocalPosOffset;
+    public GameObject parent1;
+    public Vector3 sourcePinkyAnchorPos;
+    public Vector3 pinkyAnchorPos;
+    public Vector3 pinkyAnchorLocalPos;
+    public Vector3 parent1WorldPosition;
+    public Quaternion parent1WorldRotation;
+    public Vector3 parent1LocalPosition;
+    public Quaternion parent1LocalRotation;
+    public Vector3 distanceVector;
+    private bool parent1bool1 = false;
 
     [Header("LeftHand")]
     [SerializeField] private Transform[] leftHandJoints = new Transform[19];
@@ -119,6 +138,7 @@ public class MapJoints : MonoBehaviour
     private void Start()
     {
         PopulateJoints();
+
     }
 
     [ContextMenu("Populate Joints")]
@@ -261,7 +281,7 @@ public class MapJoints : MonoBehaviour
             leftHandTargetJoints[18] = thumb3RotTarget_L;
             #endregion
 
-            
+
             /*
             #region Populate RightHand Target 
             handRootTarget_R = FindDeepChild(networkPlayer.transform, "OculusHand_R");
@@ -313,6 +333,12 @@ public class MapJoints : MonoBehaviour
         }
         ReadyToMap();
 
+    }
+
+    [ContextMenu("Parent1")]
+    public void Parent1()
+    {
+        parent1bool1 = true;
     }
     public GameObject[] FindObjectsWithTagInAllScenes(string tag)
     {
@@ -395,20 +421,80 @@ public class MapJoints : MonoBehaviour
         recalculateParent = true;
     }
 
+    [ContextMenu("MapPinky")]
+    public void MapPinky()
+    {
+        recalculatePinky = true;
+    }
+    public static void ReparentAndMaintainWorldTransform(GameObject objectToReparent, Transform newParent)
+    {
+        // Record current world transform
+        Vector3 worldPosition = objectToReparent.transform.position;
+        Quaternion worldRotation = objectToReparent.transform.rotation;
+        Vector3 worldScale = objectToReparent.transform.lossyScale;
+
+        // Change parent
+        objectToReparent.transform.SetParent(newParent, false);
+
+        // After setting the new parent, adjust the local transform to maintain the original world transform
+        objectToReparent.transform.position = worldPosition;
+        objectToReparent.transform.rotation = worldRotation;
+
+        // Scale is a bit trickier due to how it's affected by the parent's scale
+        // This assumes the parent's scale is uniform and not skewed or non-uniform
+        if (newParent != null)
+        {
+            Vector3 parentScale = newParent.lossyScale;
+            objectToReparent.transform.localScale = new Vector3(
+                worldScale.x / parentScale.x,
+                worldScale.y / parentScale.y,
+                worldScale.z / parentScale.z);
+        }
+        else // If there's no parent, just apply the world scale directly
+        {
+            objectToReparent.transform.localScale = worldScale;
+        }
+    }
+    IEnumerator AccessAfterLateUpdate()
+    {
+        // Wait until the end of the frame after all LateUpdate calls
+        yield return new WaitForEndOfFrame();
+        parent1WorldPosition = parent1.transform.position;
+        parent1WorldRotation = parent1.transform.rotation;
+        parent1LocalPosition = parent1.transform.localPosition;
+        parent1LocalRotation = parent1.transform.localRotation;
+
+    }
+
     private void LateUpdate()
     {
-        if (recalculateAnchors == true)
+        StartCoroutine(AccessAfterLateUpdate());
+
+        if (recalculatePinky == true)
         {
-            //CopyRetargetedTransform(anchorWrist, anchorTargetWrist);
-            CopyRetargetedTransform(wrist_L, wristTarget_L);
+            CopyTransform(pinkySource, pinkyTarget);
+            if (parent1bool1 == true)
+            {
+                pinkyTarget.gameObject.transform.SetParent(parent1.transform);
+                //ReparentAndMaintainWorldTransform(pinkyTarget.gameObject, parent1.transform);
+                Debug.Log("Actual World Position After Reparenting: " + pinkyTarget.transform.position);
+                Debug.Log("Source World Position: " + pinkySource.transform.position);
+
+                pinkyTarget.transform.position = pinkySource.transform.position;
+                sourcePinkyAnchorPos = pinkySource.transform.position;
+                pinkyAnchorPos = pinkyTarget.transform.position;
+                pinkyAnchorLocalPos = pinkyTarget.transform.localPosition;
+
+                pinkyTarget.transform.localPosition = pinkyTarget.transform.localPosition + pinkyAnchorLocalPosOffset;
+            }
         }
         if (isReadyToMap == true)
         {
             #region Map LeftHand
             //CopyTransform(handRoot_L, handRootTarget_L);
             //
-            
-            CopyRotation(index1Rot_L, index1RotTarget_L);
+            CopyRotation(wrist_L, wristTarget_L);
+            CopyRotationWithOffset(index1Rot_L, index1RotTarget_L, rotationOffset1);
             CopyRotation(index2Rot_L, index2RotTarget_L);
             CopyRotation(index3Rot_L, index3RotTarget_L);
             CopyRotation(middle1Rot_L, middle1RotTarget_L);
@@ -456,94 +542,62 @@ public class MapJoints : MonoBehaviour
         }
     }
 
-    void RepositionParent(Transform childTransform)
-    {
-        Vector3 lastChildPosition;
-        Quaternion lastChildRotation;
 
-        // Initialize with the current state of the child
-        lastChildPosition = childTransform.localPosition;
-        lastChildRotation = childTransform.localRotation;
-
-        // Check if the child has moved
-        if (childTransform.localPosition != lastChildPosition)
+        void CopyTransform(Transform source, Transform destination)
         {
-            // Update the parent's position based on the child's change
-            Vector3 positionDelta = childTransform.localPosition - lastChildPosition;
-            transform.position += positionDelta;
+            destination.position = source.position;
+            destination.rotation = source.rotation;
+        }
+        void CopyRetargetedTransform(Transform source, Transform target)
+        {
+            // Directly match the source's world transform.
+            target.position = source.position;
+            target.rotation = source.rotation;
 
-            // Update last position to the current position for the next frame
-            lastChildPosition = childTransform.localPosition;
+            // Calculate the inverse transform of all parent objects up to the root for position
+            Transform currentParent = target.parent;
+
+            // Traverse up the hierarchy, applying the inverse transform of each parent
+            while (currentParent != null)
+            {// Convert back to local transform.
+                target.localPosition = target.parent.InverseTransformPoint(target.position);
+                target.localRotation = Quaternion.Inverse(target.parent.rotation) * target.rotation;
+
+                currentParent = currentParent.parent; // Move to the next parent
+            }
+
+            // Apply the calculated local position and rotation to objectToAlign
+            //target.localPosition = localPosition;
+            //target.localRotation = localRotation;
         }
 
-        // Check if the child has rotated
-        if (childTransform.localRotation != lastChildRotation)
+
+
+        void CopyLocalTransform(Transform source, Transform destination)
         {
-            // Update the parent's rotation based on the child's change
-            Quaternion rotationDelta = childTransform.localRotation * Quaternion.Inverse(lastChildRotation);
-            transform.rotation = rotationDelta * transform.rotation;
-
-            // Update last rotation to the current rotation for the next frame
-            lastChildRotation = childTransform.localRotation;
-        }
-    }
-
-    void CopyTransform(Transform source, Transform destination)
-    {
-        destination.position = source.position;
-        destination.rotation = source.rotation;
-        destination.localScale = source.localScale;
-    }
-    void CopyRetargetedTransform(Transform source, Transform target)
-    {
-        //recalculateParent = true;
-        // Calculate the target world transform
-        Vector3 sourceWorldPosition = source.position;
-        Quaternion sourceWorldRotation = source.rotation;
-
-        // Calculate the inverse transform of all parent objects up to the root for position
-        Transform currentParent = target.parent;
-        Vector3 localPosition = sourceWorldPosition;
-        Quaternion localRotation = sourceWorldRotation;
-
-        // Traverse up the hierarchy, applying the inverse transform of each parent
-        while (currentParent != null)
-        {
-            localPosition = currentParent.InverseTransformPoint(localPosition); // Convert world position to local
-            localRotation = Quaternion.Inverse(currentParent.rotation) * localRotation; // Adjust rotation relative to parent
-
-            currentParent = currentParent.parent; // Move to the next parent
+            destination.localPosition = source.localPosition;
+            destination.localRotation = source.localRotation;
+            destination.localScale = source.localScale;
         }
 
-        // Apply the calculated local position and rotation to objectToAlign
-        target.localPosition = localPosition;
-        target.localRotation = localRotation;
-
-        if (recalculateParent == true)
+        void CopyRotation(Transform source, Transform destination)
         {
-            RepositionParent(target);
+            destination.rotation = source.rotation;
+        }
+
+        void CopyRotationWithOffset(Transform source, Transform destination, Quaternion rotationOffset)
+        {
+            // Apply the offset by multiplying the object's current rotation by the offset
+            destination.rotation = source.rotation * rotationOffset;
+        }
+
+        void CopyRetargetedRotation(Transform source, Transform destination)
+        {
+            // Convert the Quaternion to Euler angles, then adjust for the correct axis
+            Vector3 eulerRotation = source.eulerAngles;
+            float desiredRotation = eulerRotation.x; // Here, you're taking the X rotation, but you'll adjust this to Z.
+
+            // Apply the rotation to the Z-axis of the avatar's thumb parts
+            destination.localRotation = Quaternion.Euler(destination.localEulerAngles.x, desiredRotation, destination.localEulerAngles.z);
         }
     }
-
-    void CopyLocalTransform(Transform source, Transform destination)
-    {
-        destination.localPosition = source.localPosition;
-        destination.localRotation = source.localRotation;
-        destination.localScale = source.localScale;
-    }
-
-    void CopyRotation(Transform source, Transform destination)
-    {
-        destination.rotation = source.rotation;
-    }
-
-    void CopyRetargetedRotation(Transform source, Transform destination)
-    {
-        // Convert the Quaternion to Euler angles, then adjust for the correct axis
-        Vector3 eulerRotation = source.eulerAngles;
-        float desiredRotation = eulerRotation.x; // Here, you're taking the X rotation, but you'll adjust this to Z.
-
-        // Apply the rotation to the Z-axis of the avatar's thumb parts
-        destination.localRotation = Quaternion.Euler(destination.localEulerAngles.x, desiredRotation, destination.localEulerAngles.z);
-    }
-}

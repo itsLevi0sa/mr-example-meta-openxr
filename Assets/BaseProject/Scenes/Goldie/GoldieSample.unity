@@ -692,6 +692,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1166525784349883678, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2818570535877892811, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1478,6 +1482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpace: {fileID: 1121651800}
   center: {fileID: 1476490254}
+  goldie: {fileID: 0}
   head: {fileID: 963194228}
   pelvis: {fileID: 1748860961}
   leftFoot: {fileID: 786099075}
@@ -1967,6 +1972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpace: {fileID: 217491986}
   center: {fileID: 1696182515}
+  goldie: {fileID: 1480083904}
   head: {fileID: 2088880529}
   pelvis: {fileID: 902156648}
   leftFoot: {fileID: 1915172673}
