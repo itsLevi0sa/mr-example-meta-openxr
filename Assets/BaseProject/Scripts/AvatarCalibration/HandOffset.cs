@@ -10,6 +10,12 @@ public class HandOffset : MonoBehaviour
     [SerializeField] GameObject controllerOffset;
     [SerializeField] GameObject handOffset;
     [SerializeField] GameObject referenceOffset;
+    public bool usingControllers=false;
+    public bool usingHandTracking = false;
+    public bool showSystemHands;
+    [SerializeField] SkinnedMeshRenderer leftHandVisualizer;
+    [SerializeField] SkinnedMeshRenderer rightHandVisualizer;
+
 
     public void CopyHandTransform()
     {
@@ -23,5 +29,17 @@ public class HandOffset : MonoBehaviour
         referenceOffset.transform.SetParent(controller.transform);
         referenceOffset.transform.position = controllerOffset.transform.position;
         referenceOffset.transform.rotation = controllerOffset.transform.rotation;
+    }
+
+    public void ShowHandVisualizers()
+    {
+        leftHandVisualizer.enabled = true;
+        rightHandVisualizer.enabled = true;
+    }
+
+    public void HideHandVisualizers()
+    {
+        leftHandVisualizer.enabled = false;
+        rightHandVisualizer.enabled = false;
     }
 }
