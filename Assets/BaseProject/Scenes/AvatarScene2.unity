@@ -6455,6 +6455,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3695949039903890448, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: targetPoints
+      value: 
+      objectReference: {fileID: 1992105976}
+    - target: {fileID: 3695949039903890448, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: showSystemHands
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695949039903890448, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: leftHandFingerRig
+      value: 
+      objectReference: {fileID: 1219163894}
+    - target: {fileID: 3695949039903890448, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: leftHandVisualizer
       value: 
       objectReference: {fileID: 1771648099}
@@ -6497,6 +6509,18 @@ PrefabInstance:
     - target: {fileID: 5795484677819101497, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5803971416051798259, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111295435250596524, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778294452877850503, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6983759210362812910, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_Name

@@ -14,14 +14,14 @@ public class EnabledAlert : MonoBehaviour
         if (isController==true)
         {
             handOffsetManager.CopyControllerTransform();
-            handOffsetManager.usingControllers = true;
-            handOffsetManager.usingHandTracking = false;
+            handOffsetManager.UsingControllers = true;
+            handOffsetManager.UsingHandTracking = false;
         } 
         else if (isHand==true)
         {
             handOffsetManager.CopyHandTransform();
-            handOffsetManager.usingControllers = false;
-            handOffsetManager.usingHandTracking = true;
+            handOffsetManager.UsingControllers = false;
+            handOffsetManager.UsingHandTracking = true;
         } 
     }
 }
