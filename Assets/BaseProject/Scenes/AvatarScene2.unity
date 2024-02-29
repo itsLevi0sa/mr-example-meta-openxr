@@ -804,6 +804,8 @@ GameObject:
   - component: {fileID: 200207151}
   - component: {fileID: 200207152}
   - component: {fileID: 200207153}
+  - component: {fileID: 200207155}
+  - component: {fileID: 200207154}
   m_Layer: 0
   m_Name: PinkyOffset
   m_TagString: FingerThreshold
@@ -854,14 +856,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerRig: {fileID: 1219163894}
-  rotationValue: {fileID: 200207151}
-  rotationThreshold: 0
   fingerNum: 4
   bone2: {fileID: 195817644}
   bone3: {fileID: 176354379}
   bendFinger: 0
-  rotationValueX: 0
-  displayedRotation: {x: 0, y: 0, z: 0}
+--- !u!135 &200207154
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200207150}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &200207155
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200207150}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &200806131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,9 +3330,11 @@ GameObject:
   - component: {fileID: 884354401}
   - component: {fileID: 884354402}
   - component: {fileID: 884354403}
+  - component: {fileID: 884354405}
+  - component: {fileID: 884354404}
   m_Layer: 0
   m_Name: RingOffset
-  m_TagString: Untagged
+  m_TagString: FingerThreshold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3334,14 +3382,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerRig: {fileID: 1219163894}
-  rotationValue: {fileID: 884354401}
-  rotationThreshold: 0
   fingerNum: 3
   bone2: {fileID: 418953465}
   bone3: {fileID: 1275213692}
   bendFinger: 0
-  rotationValueX: 0
-  displayedRotation: {x: 0, y: 0, z: 0}
+--- !u!54 &884354404
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884354400}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &884354405
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884354400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &891946792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1906045138107486802, guid: a97e9448f96039e4894661526888042c, type: 3}
@@ -5363,13 +5455,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461497622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.058, y: 0.114, z: 0.071}
+  m_LocalRotation: {x: 0.003898188, y: 0.048479304, z: -0.08632657, w: 0.99507904}
+  m_LocalPosition: {x: -0.0477, y: 0.113, z: 0.0327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2776161763999235116}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.924, y: 5.499, z: -9.872}
 --- !u!65 &1461497624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7316,14 +7408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerRig: {fileID: 1219163894}
-  rotationValue: {fileID: 1926832266}
-  rotationThreshold: 80
   fingerNum: 1
   bone2: {fileID: 1193004713}
   bone3: {fileID: 234621876}
   bendFinger: 0
-  rotationValueX: 0
-  displayedRotation: {x: 0, y: 0, z: 0}
 --- !u!54 &1926832269
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7643,9 +7731,11 @@ GameObject:
   - component: {fileID: 2082425937}
   - component: {fileID: 2082425938}
   - component: {fileID: 2082425939}
+  - component: {fileID: 2082425941}
+  - component: {fileID: 2082425940}
   m_Layer: 0
   m_Name: MiddleOffset
-  m_TagString: Untagged
+  m_TagString: FingerThreshold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7693,14 +7783,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fingerRig: {fileID: 1219163894}
-  rotationValue: {fileID: 2082425937}
-  rotationThreshold: 0
   fingerNum: 2
   bone2: {fileID: 1445171678}
   bone3: {fileID: 188864310}
   bendFinger: 0
-  rotationValueX: 0
-  displayedRotation: {x: 0, y: 0, z: 0}
+--- !u!54 &2082425940
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082425936}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &2082425941
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082425936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &2083279976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1906045138107486802, guid: a97e9448f96039e4894661526888042c, type: 3}
