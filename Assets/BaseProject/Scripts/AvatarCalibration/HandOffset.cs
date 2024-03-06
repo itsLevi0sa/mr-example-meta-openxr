@@ -16,7 +16,7 @@ public class HandOffset : MonoBehaviour
     [SerializeField] GameObject handOffset;
     [SerializeField] GameObject referenceOffset;
     [SerializeField] GameObject targetPoints;
-    [SerializeField] FingerRig leftHandFingerRig;
+    [SerializeField] FingerRig handFingerRig;
 
     private bool usingControllers;
     public bool UsingControllers
@@ -50,8 +50,7 @@ public class HandOffset : MonoBehaviour
     public bool showSystemHands;
     // Previous state of the bool to detect changes
     private bool previousSystemHandsVisibilityState;
-    [SerializeField] SkinnedMeshRenderer leftHandVisualizer;
-    [SerializeField] SkinnedMeshRenderer rightHandVisualizer;
+    [SerializeField] SkinnedMeshRenderer handVisualizer;
 
     private void Start()
     {
@@ -117,24 +116,22 @@ public class HandOffset : MonoBehaviour
 
     public void ShowHandVisualizers()
     {
-        leftHandVisualizer.enabled = true;
-        rightHandVisualizer.enabled = true;
+        handVisualizer.enabled = true;
     }
 
     public void HideHandVisualizers()
     {
-        leftHandVisualizer.enabled = false;
-        rightHandVisualizer.enabled = false;
+        handVisualizer.enabled = false;
     }
 
     public void DeactivateFingerControls()
     {
         targetPoints.SetActive(false);
-        leftHandFingerRig.enabled = false;
+        handFingerRig.enabled = false;
     }
     public void ActivateFingerControls()
     {
         targetPoints.SetActive(true);
-        leftHandFingerRig.enabled = true;
+        handFingerRig.enabled = true;
     }
 }
