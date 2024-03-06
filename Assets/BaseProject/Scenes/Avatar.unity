@@ -4073,6 +4073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left Hand_TargetOffset
       objectReference: {fileID: 0}
+    - target: {fileID: 4357828547697332852, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4792592619639937563, guid: 4156e55dadbab4348ada79a332421ce5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
