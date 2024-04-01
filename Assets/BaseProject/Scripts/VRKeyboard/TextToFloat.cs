@@ -7,10 +7,12 @@ public class TextToFloat : MonoBehaviour
 {
     public float displayValue;
     public Text displayText;
+    public UpdateValue updateValue;
 
     // Update is called once per frame
     void Update()
     {
+       
         if (float.TryParse(displayText.text, out float floatValue))
         {
             displayValue = floatValue;
@@ -19,5 +21,7 @@ public class TextToFloat : MonoBehaviour
         {
             displayValue = 0;
         }
+        updateValue.AxisValue = displayValue;
+        updateValue.axisValueToText.text = displayText.text;
     }
 }

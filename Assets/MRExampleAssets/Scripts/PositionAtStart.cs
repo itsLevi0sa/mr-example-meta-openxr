@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Content.UI.Layout;
+using UnityEngine.XR.Interaction.Toolkit.Utilities;
+using static UnityEditor.FilePathAttribute;
 
 public class PositionAtStart : MonoBehaviour
 {
@@ -45,6 +47,8 @@ public class PositionAtStart : MonoBehaviour
             targetEuler.y,
             targetEuler.z
         );
+        var forward = (transform.position - m_Target.position).normalized;
+        BurstMathUtility.LookRotationWithForwardProjectedOnPlane(forward, Vector3.up, out targetRotation);
 
         newTransform.rotation = targetRotation;
         m_TargetPosition = m_Target.position + newTransform.TransformVector(m_TargetOffset);
@@ -68,6 +72,7 @@ public class PositionAtStart : MonoBehaviour
 
         // Ensure the final position is exactly at the end position
         transform.position = m_TargetPosition;
+        transform.rotation = targetRotation;
         //yield return new WaitForSeconds(lerpDuration);
         //startFollow = true;
         lazyFollower.enabled = true;
